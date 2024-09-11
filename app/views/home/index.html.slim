@@ -1,0 +1,11 @@
+h1.text-3xl.font-bold.mb-6 Upcoming Events
+
+.grid.grid-cols-1.md:grid-cols-2.lg:grid-cols-3.gap-8
+  - @events.each do |event|
+    .bg-white.rounded-lg.shadow-md.overflow-hidden
+      img src=event.image_url alt=event.title class="w-full h-48 object-cover"
+      .p-4
+        h2.text-xl.font-semibold.mb-2 = event.title
+        p.text-gray-600.mb-4 = event.date.strftime("%B %d, %Y")
+        p.text-gray-700.mb-2 = truncate(event.description, length: 100)
+        a href=event_path(event) class="text-indigo-600 hover:text-indigo-800 font-semibold" View Details
