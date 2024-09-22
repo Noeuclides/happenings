@@ -1,4 +1,4 @@
-nav.bg-gray-800.text-white.py-4 data-controller="modal"
+nav.bg-primary.text-white.py-4
   .container.mx-auto.flex.justify-between.items-center
     / Logo
     .text-xl.font-bold
@@ -11,12 +11,12 @@ nav.bg-gray-800.text-white.py-4 data-controller="modal"
       li
         = link_to "Events", "events_path", class: "hover:text-gray-300"
       li
-        = link_to "Profile", "profile_path", class: "hover:text-gray-300"
+        = link_to "Profile", edit_user_registration_path, class: "hover:text-gray-300"
       - if user_signed_in?
         li
-          = link_to "Logout", "destroy_user_session_path", method: :delete, class: "hover:text-gray-300"
+          = button_to "Logout", destroy_user_session_path, method: :delete, class: "hover:text-gray-300"
       - else
         li
-          = link_to "Login", "#", class: "hover:text-gray-300", data: { action: "modal#open", modal_test_param: "login-modal" }
+          = link_to "Login", new_user_session_path, class: "hover:text-gray-300"
         li.ml-4
-          = link_to "Sign Up", "#", class: "hover:text-gray-300", data: { action: "modal#open", modal: "signup-modal" }
+          = link_to "Sign Up", new_user_registration_path, class: "hover:text-gray-300"

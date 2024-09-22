@@ -30,11 +30,22 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
-class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+FactoryBot.define do
+  factory :user do
+    first_name { 'Juan' }
+    last_name { 'Perez' }
+    email { 'test@example.com' }
+    password { 'password123' }
+    password_confirmation { 'password123' }
 
-  validates :first_name, :last_name, presence: true
+    trait :pending do
+      confirmation_token { 'some-confirmation-token' }
+      confirmed_at { nil }
+    end
+
+    trait :confirmed do
+      confirmed_at { Time.current }
+    end
+    
+  end
 end

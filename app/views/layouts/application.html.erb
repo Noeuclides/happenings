@@ -13,12 +13,8 @@
 
   <body class="flex flex-col min-h-screen">
     <%= render "layouts/navbar" %>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <main class="container mx-auto mt-28 px-5">
       <%= yield %>
     </main>
-
-    <!-- Modals -->
-    <%= render "layouts/login_modal" %>
-    <%#= render "layouts/signup_modal" %>
   </body>
 </html>

@@ -11,3 +11,6 @@
 }
 
 */
+[type=checkbox], [type=radio] {
+    color: #1F2937
+}
