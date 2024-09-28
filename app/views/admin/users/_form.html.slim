@@ -1,0 +1,42 @@
+= form_with(model: [:admin, @user], local: true, class: "space-y-4 max-w-md mx-auto") do |form|
+  - if @user.errors.any?
+    #error_explanation.bg-red-100.border.border-red-400.text-red-700.px-4.py-3.rounded.relative.mb-4
+      h2.font-bold.mb-2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+      ul.list-disc.list-inside
+        - @user.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = form.label :email, class: "block text-sm font-medium text-gray-700 mb-1"
+    = form.email_field :email, class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500"
+
+  .field
+    = form.label :first_name, class: "block text-sm font-medium text-gray-700 mb-1"
+    = form.text_field :first_name, class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500"
+
+  .field
+    = form.label :last_name, class: "block text-sm font-medium text-gray-700 mb-1"
+    = form.text_field :last_name, class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500"
+
+  .field
+    = form.label :roles, class: "block text-sm font-medium text-gray-700 mb-1"
+    .mt-2.space-y-2
+      - Role.all.each do |role|
+        .flex.items-center
+          = check_box_tag "user[role_ids][]", role.id, @user.has_role?(role.name), id: "user_role_#{role.id}", class: "h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+          = label_tag "user_role_#{role.id}", role.name.titleize, class: "ml-2 block text-sm text-gray-900"
+
+  - if @user.new_record? || params[:action] == 'edit'
+    .field
+      = form.label :password, class: "block text-sm font-medium text-gray-700 mb-1"
+      = form.password_field :password, class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500"
+      - if params[:action] == 'edit'
+        p.text-sm.text-gray-600.mt-1 (leave blank if you dont want to change it)
+
+    .field
+      = form.label :password_confirmation, class: "block text-sm font-medium text-gray-700 mb-1"
+      = form.password_field :password_confirmation, class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500"
+
+  .actions
+    = form.submit class: "w-full px-4 py-2 text-white bg-primary rounded-md hover:bg-primary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+

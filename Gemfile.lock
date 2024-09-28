@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    action_policy (0.7.1)
+      ruby-next-core (>= 1.0)
     actioncable (7.0.8.4)
       actionpack (= 7.0.8.4)
       activesupport (= 7.0.8.4)
@@ -213,6 +215,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.3.7)
+    rolify (6.0.1)
     rspec-core (3.12.2)
       rspec-support (~> 3.12.0)
     rspec-expectations (3.12.3)
@@ -230,6 +233,7 @@ GEM
       rspec-mocks (~> 3.12)
       rspec-support (~> 3.12)
     rspec-support (3.12.1)
+    ruby-next-core (1.0.3)
     rubyzip (2.3.2)
     selenium-webdriver (4.24.0)
       base64 (~> 0.2)
@@ -302,6 +306,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  action_policy
   annotate
   bootsnap
   capybara
@@ -316,6 +321,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 7.0.8, >= 7.0.8.4)
   redis (~> 4.0)
+  rolify
   rspec-rails (~> 6.0.0)
   selenium-webdriver
   shoulda-matchers

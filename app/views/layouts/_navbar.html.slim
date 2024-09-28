@@ -5,16 +5,17 @@ nav.bg-primary.text-white.py-4
       = link_to "Happenings", root_path, class: "hover:text-gray-300"
 
     / Links
-    ul.flex.space-x-4
+    ul.flex.space-x-4.items-center
       li
         = link_to "Home", root_path, class: "hover:text-gray-300"
       li
         = link_to "Events", "events_path", class: "hover:text-gray-300"
-      li
-        = link_to "Profile", edit_user_registration_path, class: "hover:text-gray-300"
       - if user_signed_in?
-        li
-          = button_to "Logout", destroy_user_session_path, method: :delete, class: "hover:text-gray-300"
+        - if admin?
+          li
+            = link_to "Users", admin_users_path, class: "hover:text-gray-300"
+        = render "layouts/dropdown"
+
       - else
         li
           = link_to "Login", new_user_session_path, class: "hover:text-gray-300"
