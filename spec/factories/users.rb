@@ -46,6 +46,17 @@ FactoryBot.define do
     trait :confirmed do
       confirmed_at { Time.current }
     end
-    
+
+    trait :admin do
+      after(:create) { |user| user.add_role(:admin) }
+    end
+
+    trait :assistant do
+      after(:create) { |user| user.add_role(:assistant) }
+    end
+
+    trait :organizer do
+      after(:create) { |user| user.add_role(:organizer) }
+    end
   end
 end

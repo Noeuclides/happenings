@@ -12,10 +12,10 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/admin/users", type: :request do
+RSpec.describe "/venues", type: :request do
   
   # This should return the minimal set of attributes required to create a valid
-  # Admin::User. As you add validations to Admin::User, be sure to
+  # Venue. As you add validations to Venue, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -27,59 +27,61 @@ RSpec.describe "/admin/users", type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      Admin::User.create! valid_attributes
-      get admin_users_url
+      Venue.create! valid_attributes
+      get venues_url
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
     it "renders a successful response" do
-      user = Admin::User.create! valid_attributes
-      get admin_user_url(user)
+      venue = Venue.create! valid_attributes
+      get venue_url(venue)
       expect(response).to be_successful
     end
   end
 
   describe "GET /new" do
+    include_context :login_user
+
     it "renders a successful response" do
-      get new_admin_user_url
+      get new_venue_url
       expect(response).to be_successful
     end
   end
 
   describe "GET /edit" do
     it "renders a successful response" do
-      user = Admin::User.create! valid_attributes
-      get edit_admin_user_url(user)
+      venue = Venue.create! valid_attributes
+      get edit_venue_url(venue)
       expect(response).to be_successful
     end
   end
 
   describe "POST /create" do
     context "with valid parameters" do
-      it "creates a new Admin::User" do
+      it "creates a new Venue" do
         expect {
-          post admin_users_url, params: { admin_user: valid_attributes }
-        }.to change(Admin::User, :count).by(1)
+          post venues_url, params: { venue: valid_attributes }
+        }.to change(Venue, :count).by(1)
       end
 
-      it "redirects to the created admin_user" do
-        post admin_users_url, params: { admin_user: valid_attributes }
-        expect(response).to redirect_to(admin_user_url(Admin::User.last))
+      it "redirects to the created venue" do
+        post venues_url, params: { venue: valid_attributes }
+        expect(response).to redirect_to(venue_url(Venue.last))
       end
     end
 
     context "with invalid parameters" do
-      it "does not create a new Admin::User" do
+      it "does not create a new Venue" do
         expect {
-          post admin_users_url, params: { admin_user: invalid_attributes }
-        }.to change(Admin::User, :count).by(0)
+          post venues_url, params: { venue: invalid_attributes }
+        }.to change(Venue, :count).by(0)
       end
 
     
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        post admin_users_url, params: { admin_user: invalid_attributes }
+        post venues_url, params: { venue: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     
@@ -92,26 +94,26 @@ RSpec.describe "/admin/users", type: :request do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested admin_user" do
-        user = Admin::User.create! valid_attributes
-        patch admin_user_url(user), params: { admin_user: new_attributes }
-        user.reload
+      it "updates the requested venue" do
+        venue = Venue.create! valid_attributes
+        patch venue_url(venue), params: { venue: new_attributes }
+        venue.reload
         skip("Add assertions for updated state")
       end
 
-      it "redirects to the admin_user" do
-        user = Admin::User.create! valid_attributes
-        patch admin_user_url(user), params: { admin_user: new_attributes }
-        user.reload
-        expect(response).to redirect_to(admin_user_url(user))
+      it "redirects to the venue" do
+        venue = Venue.create! valid_attributes
+        patch venue_url(venue), params: { venue: new_attributes }
+        venue.reload
+        expect(response).to redirect_to(venue_url(venue))
       end
     end
 
     context "with invalid parameters" do
     
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        user = Admin::User.create! valid_attributes
-        patch admin_user_url(user), params: { admin_user: invalid_attributes }
+        venue = Venue.create! valid_attributes
+        patch venue_url(venue), params: { venue: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     
@@ -119,17 +121,17 @@ RSpec.describe "/admin/users", type: :request do
   end
 
   describe "DELETE /destroy" do
-    it "destroys the requested admin_user" do
-      user = Admin::User.create! valid_attributes
+    it "destroys the requested venue" do
+      venue = Venue.create! valid_attributes
       expect {
-        delete admin_user_url(user)
-      }.to change(Admin::User, :count).by(-1)
+        delete venue_url(venue)
+      }.to change(Venue, :count).by(-1)
     end
 
-    it "redirects to the admin_users list" do
-      user = Admin::User.create! valid_attributes
-      delete admin_user_url(user)
-      expect(response).to redirect_to(admin_users_url)
+    it "redirects to the venues list" do
+      venue = Venue.create! valid_attributes
+      delete venue_url(venue)
+      expect(response).to redirect_to(venues_url)
     end
   end
 end

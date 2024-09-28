@@ -47,4 +47,12 @@ class User < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  # def admin?
+  #   has_role? :admin
+  # end
+  #
+  # def organizer?
+  #   has_role? :organizer
+  # end
 end

@@ -9,7 +9,11 @@ class ApplicationPolicy < ActionPolicy::Base
 
   private
 
-   def admin?
-     user.has_role? :admin
-   end
+  def admin?
+    user.has_role? :admin
+  end
+
+  def organizer?
+    user.has_role? :organizer
+  end
 end
