@@ -11,6 +11,9 @@ nav.bg-primary.text-white.py-4
       li
         = link_to "Events", "events_path", class: "hover:text-gray-300"
       - if user_signed_in?
+        - if admin? || organizer?
+          li
+            = link_to "Venues", venues_path, class: "hover:text-gray-300"
         - if admin?
           li
             = link_to "Users", admin_users_path, class: "hover:text-gray-300"

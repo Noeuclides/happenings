@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Admin::UserPolicy, type: :policy do
+RSpec.describe VenuePolicy, type: :policy do
   # See https://actionpolicy.evilmartians.io/#/testing?id=rspec-dsl
   #
   # let(:user) { build_stubbed :user }

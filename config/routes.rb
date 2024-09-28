@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :venues
   namespace :admin do
     resources :users
   end
