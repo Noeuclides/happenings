@@ -5,6 +5,7 @@
 #  id            :bigint           not null, primary key
 #  address       :string
 #  capacity      :integer
+#  name          :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  created_by_id :bigint           not null
@@ -19,8 +20,9 @@
 #
 FactoryBot.define do
   factory :venue do
+    name { "MyString" }
     address { "MyString" }
     capacity { 1 }
-    created_by { nil }
+    created_by factory: :user
   end
 end

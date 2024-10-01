@@ -55,6 +55,7 @@ gem "slim-rails"
 gem "devise"
 gem "rolify"
 gem "action_policy"
+gem 'money-rails', '~> 1.12'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -64,6 +65,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "faker"
   gem 'shoulda-matchers'
+  gem 'rails-controller-testing'
 end
 
 group :development do

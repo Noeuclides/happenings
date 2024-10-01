@@ -9,7 +9,7 @@ nav.bg-primary.text-white.py-4
       li
         = link_to "Home", root_path, class: "hover:text-gray-300"
       li
-        = link_to "Events", "events_path", class: "hover:text-gray-300"
+        = link_to "Events", events_path, class: "hover:text-gray-300"
       - if user_signed_in?
         - if admin? || organizer?
           li
