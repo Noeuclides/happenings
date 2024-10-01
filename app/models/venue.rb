@@ -5,6 +5,7 @@
 #  id            :bigint           not null, primary key
 #  address       :string
 #  capacity      :integer
+#  name          :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  created_by_id :bigint           not null
@@ -20,6 +21,6 @@
 class Venue < ApplicationRecord
   belongs_to :created_by, class_name: User.name
 
-  validates :address, :capacity, presence: true
+  validates :name, :address, :capacity, presence: true
 
 end

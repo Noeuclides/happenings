@@ -5,6 +5,7 @@
 #  id            :bigint           not null, primary key
 #  address       :string
 #  capacity      :integer
+#  name          :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  created_by_id :bigint           not null
@@ -21,6 +22,7 @@ require 'rails_helper'
 
 RSpec.describe Venue, type: :model do
   describe "fields" do
+    it { should have_db_column(:name).of_type(:string) }
     it { should have_db_column(:address).of_type(:string) }
     it { should have_db_column(:capacity).of_type(:integer) }
   end
@@ -30,6 +32,7 @@ RSpec.describe Venue, type: :model do
   end
 
   describe 'Validations' do
+    it { should validate_presence_of(:name) }
     it { should validate_presence_of(:address) }
     it { should validate_presence_of(:capacity) }
   end

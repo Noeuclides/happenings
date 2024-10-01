@@ -1,0 +1,21 @@
+= form_with(model: event, class: "space-y-4 max-w-md mx-auto") do |form|
+  .field
+    = form.label :name, class: "block text-sm font-medium text-gray-700 mb-1"
+    = form.text_field :name, class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500", placeholder: "Name"
+  .field
+    = form.label :description, class: "block text-sm font-medium text-gray-700 mb-1"
+    = form.text_area :description, class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500", placeholder: "Description"
+  .field
+    = form.label :organizer_id, class: "block text-sm font-medium text-gray-700 mb-1"
+    = form.text_field :organizer_id, class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500", placeholder: "Organizer"
+  .field
+    = form.label :venue_id, class: "block text-sm font-medium text-gray-700 mb-1"
+    = form.text_field :venue_id, class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500", placeholder: "Venue"
+  .field
+    = form.label :date, class: "block text-sm font-medium text-gray-700 mb-1"
+    = form.datetime_field :date, class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500", placeholder: "Date"
+  .field
+    = form.label :price, class: "block text-sm font-medium text-gray-700 mb-1"
+    = form.text_field :price, class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500", placeholder: "Price"
+  .actions
+    = form.submit class: "w-full px-4 py-2 text-white bg-primary rounded-md hover:bg-primary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"

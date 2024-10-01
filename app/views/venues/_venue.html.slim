@@ -7,6 +7,9 @@ div id="#{dom_id venue}"
       .border-t.border-gray-200
         dl
           .bg-gray-50.px-4.py-5.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-6
+            dt.text-sm.font-medium.text-gray-500 Name
+            dd.mt-1.text-sm.text-gray-900.sm:mt-0.sm:col-span-2 = venue.name
+          .bg-gray-50.px-4.py-5.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-6
             dt.text-sm.font-medium.text-gray-500 Address
             dd.mt-1.text-sm.text-gray-900.sm:mt-0.sm:col-span-2 = venue.address
           .bg-white.px-4.py-5.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-6

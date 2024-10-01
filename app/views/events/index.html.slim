@@ -1,0 +1,38 @@
+/ app/views/events/index.html.slim
+
+.container.mx-auto.px-4.py-8
+  h1.text-3xl.font-bold.mb-8 Descubre eventos culturales alternativos en Bogotá
+
+  / Barra de filtros
+  .mb-8.bg-gray-100.p-4.rounded-lg
+    h2.text-xl.font-semibold.mb-4 Filtrar por categoría
+    .flex.flex-wrap.gap-2
+      / - ActsAsTaggableOn::Tag.most_used(10).each do |tag|
+      /   = link_to tag.name, events_path(category: tag.name), class: "px-3 py-1 bg-primary text-white rounded-full text-sm hover:bg-primary-dark #{'bg-primary-dark' if params[:category] == tag.name}"
+
+  / Grid de eventos
+  .grid.grid-cols-1.md:grid-cols-2.lg:grid-cols-3.gap-6
+    - @events.each do |event|
+      .bg-white.rounded-lg.shadow-md.overflow-hidden
+        = link_to event_path(event)
+        - if event.image.attached?
+          = image_tag event.image.variant(resize_to_fill: [300, 200]), class: "w-full h-48 object-cover"
+        - else
+          .h-48.bg-gray-300.flex.items-center.justify-center
+            span.text-gray-500 No image available
+
+        .p-4
+          h2.text-xl.font-semibold.mb-2 = link_to event.name, event_path(event), class: "hover:text-primary"
+          .text-sm.text-gray-600.mb-2
+            i.fas.fa-map-marker-alt.mr-2
+            = event.venue.name
+          .text-primary.font-bold.mb-2
+            = event.price.format
+          .flex.flex-wrap.gap-2.mb-2
+            / - event.category_list.each do |category|
+            /   span.px-2.py-1.bg-gray-200.text-xs.rounded-full = category
+          = link_to "Ver detalles", event_path(event), class: "mt-2 inline-block bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark"
+
+      / Paginación (si estás usando)
+      / .mt-8
+      /   = paginate @events

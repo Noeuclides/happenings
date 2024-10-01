@@ -32,9 +32,9 @@
 #
 FactoryBot.define do
   factory :user do
-    first_name { 'Juan' }
-    last_name { 'Perez' }
-    email { 'test@example.com' }
+    first_name { Faker::Name.first_name }
+    last_name { Faker::Name.last_name }
+    email { Faker::Internet.email }
     password { 'password123' }
     password_confirmation { 'password123' }
 
@@ -48,15 +48,15 @@ FactoryBot.define do
     end
 
     trait :admin do
-      after(:create) { |user| user.add_role(:admin) }
+      before(:create) { |user| user.add_role(:admin) }
     end
 
     trait :assistant do
-      after(:create) { |user| user.add_role(:assistant) }
+      before(:create) { |user| user.add_role(:assistant) }
     end
 
     trait :organizer do
-      after(:create) { |user| user.add_role(:organizer) }
+      before(:create) { |user| user.add_role(:organizer) }
     end
   end
 end

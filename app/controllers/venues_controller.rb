@@ -28,7 +28,6 @@ class VenuesController < ApplicationController
   def create
     authorize!
 
-    debugger
     @venue = Venue.new(venue_params)
 
     @venue.created_by = current_user
@@ -77,6 +76,6 @@ class VenuesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def venue_params
-      params.require(:venue).permit(:address, :capacity, :created_by_id)
+      params.require(:venue).permit(:name, :address, :capacity, :created_by_id)
     end
 end
