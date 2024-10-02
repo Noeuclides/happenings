@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :set_event, except: %i[ index new create ]
   verify_authorized
 
   # GET /events or /events.json
@@ -62,6 +62,26 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to events_url, notice: "Event was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def register
+    registration = current_user.registrations.build(event: @event)
+
+    if registration.save
+      redirect_to @event, notice: 'Te has registrado exitosamente para este evento.'
+    else
+      redirect_to @event, alert: 'Hubo un problema con tu registro.'
+    end
+  end
+
+  def unregister
+    registration = current_user.registrations.find_by(event: @event)
+
+    if registration&.destroy
+      redirect_to @event, notice: 'Has cancelado tu registro para este evento.'
+    else
+      redirect_to @event, alert: 'Hubo un problema al cancelar tu registro.'
     end
   end
 

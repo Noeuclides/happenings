@@ -37,6 +37,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
+  has_many :organized_events, class_name: Event.name, foreign_key: 'organizer_id'
+  has_many :registrations
+  has_many :events, through: :registrations
+
   validates :first_name, :last_name, presence: true
   after_create :assign_default_role
 
