@@ -29,6 +29,8 @@
 class Event < ApplicationRecord
   belongs_to :organizer, class_name: User.name
   belongs_to :venue, optional: true
+  has_many :registrations
+  has_many :users, through: :registrations
 
   monetize :price_cents
 

@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
-  resources :events
+  root to: 'landing#index'
+  get 'landing/index'
+
+  get 'home', to: 'home#index'
+
+  resources :events do
+    member do
+      post 'register'
+      delete 'unregister'
+    end
+  end
+
   resources :venues
   namespace :admin do
     resources :users
@@ -8,8 +19,4 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
-  root to: 'landing#index'
-  get 'landing/index'
-
-  get 'home', to: 'home#index'
 end

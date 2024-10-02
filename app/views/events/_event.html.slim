@@ -1,19 +1,24 @@
-div id="#{dom_id event}"
-  p
-    strong Name:
-    =< event.name
-  p
-    strong Description:
-    =< event.description
-  p
-    strong Organizer:
-    =< event.organizer_id
-  p
-    strong Venue:
-    =< event.venue_id
-  p
-    strong Date:
-    =< event.date
-  p
-    strong Price:
-    =< event.price
+.container.mx-auto.px-4.py-8
+  .bg-white.rounded-lg.shadow-md.overflow-hidden
+    - if @event.image.attached?
+      = image_tag @event.image.variant(resize_to_fill: [800, 400]), class: "w-full h-64 object-cover"
+    - else
+      .h-64.bg-gray-300.flex.items-center.justify-center
+        span.text-gray-500 No image available
+
+    .p-6
+      h1.text-3xl.font-bold.mb-4 = @event.name
+      p.text-gray-600.mb-4 = @event.description
+      .flex.items-center.mb-4
+        i.fas.fa-map-marker-alt.mr-2.text-primary
+        span = @event.venue&.name || "Ubicación no especificada"
+      .flex.items-center.mb-4
+        i.fas.fa-calendar-alt.mr-2.text-primary
+        span = l(@event.date, format: :long)
+      .text-2xl.font-bold.text-primary.mb-4
+        = @event.price.format
+
+      - if current_user.registrations.exists?(event: @event)
+        = button_to "Cancelar registro", unregister_event_path(@event), method: :delete, class: "bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+      - else
+        = button_to "Registrarse", register_event_path(@event), method: :post, class: "bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded"
