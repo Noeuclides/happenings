@@ -57,6 +57,10 @@ gem "rolify"
 gem "action_policy"
 gem 'money-rails', '~> 1.12'
 gem 'image_processing', '~> 1.2'
+gem 'rack-cors'
+gem 'devise'
+gem 'devise-jwt'
+gem 'jsonapi-serializer'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -85,5 +89,4 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-
 end

@@ -9,7 +9,8 @@ admin = User.new(
   password: '111111',
   password_confirmation: '111111',
   first_name: 'Admin',
-  last_name: 'admin'
+  last_name: 'admin',
+  jti: SecureRandom.uuid
 )
 admin.skip_confirmation!
 admin.save!
@@ -21,7 +22,8 @@ admin.add_role(:admin)
     password: '111111',
     password_confirmation: '111111',
     first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name
+    last_name: Faker::Name.last_name,
+    jti: SecureRandom.uuid
   )
   organizer.skip_confirmation!
   organizer.save!
@@ -34,7 +36,8 @@ end
     password: '111111',
     password_confirmation: '111111',
     first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name
+    last_name: Faker::Name.last_name,
+    jti: SecureRandom.uuid
   )
   user.skip_confirmation!
   user.save!
