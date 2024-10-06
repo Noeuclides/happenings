@@ -12,6 +12,7 @@
 #  encrypted_password     :string           default(""), not null
 #  failed_attempts        :integer          default(0), not null
 #  first_name             :string
+#  jti                    :string           not null
 #  last_name              :string
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string
@@ -28,6 +29,7 @@
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
+#  index_users_on_jti                   (jti) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 require 'rails_helper'

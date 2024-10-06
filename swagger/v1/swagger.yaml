@@ -1,0 +1,87 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/signup":
+    post:
+      summary: Creates a user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: user created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+                    first_name:
+                      type: string
+                    last_name:
+                      type: string
+                  required:
+                  - email
+                  - password
+                  - first_name
+                  - last_name
+  "/api/v1/login":
+    post:
+      summary: Logs in a user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: user logged in
+        '422':
+          description: invalid credentials
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+                  required:
+                  - email
+                  - password
+  "/api/v1/logout":
+    delete:
+      summary: Logs out user
+      tags:
+      - Sessions
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: logged out successfully
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
+components:
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer
+      bearer_format: JWT

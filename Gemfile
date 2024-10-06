@@ -61,6 +61,9 @@ gem 'rack-cors'
 gem 'devise'
 gem 'devise-jwt'
 gem 'jsonapi-serializer'
+# Gemfile
+gem 'rswag-api'
+gem 'rswag-ui'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -71,6 +74,7 @@ group :development, :test do
   gem "faker"
   gem 'shoulda-matchers'
   gem 'rails-controller-testing'
+  gem 'rswag-specs'
 end
 
 group :development do
