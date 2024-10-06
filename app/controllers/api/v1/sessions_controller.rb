@@ -1,4 +1,5 @@
 class Api::V1::SessionsController < Devise::SessionsController
+  include JwtAuthenticable
   respond_to :json
 
   protect_from_forgery with: :null_session

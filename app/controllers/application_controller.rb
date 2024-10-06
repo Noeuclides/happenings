@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
-  before_action :reset_api_request
+  # before_action :reset_api_request
 
   rescue_from ActionPolicy::Unauthorized do |ex|
     # ex.policy, ex.rule
@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   private
-  def reset_api_request
-    User.api_request = false
-  end
+  # def reset_api_request
+  #   User.api_request = false
+  # end
 end

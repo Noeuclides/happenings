@@ -4,6 +4,8 @@ class Api::V1::EventsController < Api::ApplicationController
 
   # GET /api/v1/events or /api/v1/events.json
   def index
+    authorize!
+
     @events = Event.all
     render json: @events
   end
@@ -15,7 +17,10 @@ class Api::V1::EventsController < Api::ApplicationController
 
   # POST /api/v1/events or /api/v1/events.json
   def create
+    authorize!
+
     @event = Event.new(event_params)
+    @event.organizer = current_user
 
     if @event.save
       render json: @event, status: :created

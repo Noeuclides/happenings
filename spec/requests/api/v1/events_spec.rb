@@ -52,7 +52,7 @@ RSpec.describe Api::V1::EventsController, type: :request do
       }
 
       response '201', 'event created' do
-        let(:event) { { name: 'Test Event', description: 'Test Description', date: Time.now, price: 10.0, organizer_id: user.id } }
+        let(:event) { { name: 'Test Event', description: 'Test Description', date: Time.now, price: 10.0 } }
         run_test!
       end
 

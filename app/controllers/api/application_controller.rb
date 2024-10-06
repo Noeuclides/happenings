@@ -1,13 +1,17 @@
 class Api::ApplicationController < ActionController::API
   include ActionController::MimeResponds
   include ActionPolicy::Controller
+  include JwtAuthenticable
   authorize :user, through: :current_user
   respond_to :json
 
   # Skip CSRF protection for API requests
   # skip_before_action :verify_authenticity_token
+  # before_action :set_api_request
 
-  before_action :set_api_request
+  rescue_from ActiveRecord::RecordNotFound do |e|
+    render json: { error: "#{e.model} not found" }, status: :not_found
+  end
 
   private
 
@@ -24,11 +28,7 @@ class Api::ApplicationController < ActionController::API
     end
   end
 
-  rescue_from ActiveRecord::RecordNotFound do |e|
-    render json: { error: "#{e.model} not found" }, status: :not_found
-  end
-
-  def set_api_request
-    User.api_request = true
-  end
+  # def set_api_request
+  #   User.api_request = true
+  # end
 end

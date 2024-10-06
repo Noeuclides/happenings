@@ -5,7 +5,7 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
   # skip_before_action :verify_authenticity_token
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
-  before_action :set_api_request
+  # before_action :set_api_request
 
   def create
     build_resource(sign_up_params)
@@ -52,7 +52,7 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def set_api_request
-    User.api_request = true
-  end
+  # def set_api_request
+  #   User.api_request = true
+  # end
 end
