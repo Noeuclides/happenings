@@ -30,9 +30,9 @@ FactoryBot.define do
   factory :event do
     name { "MyString" }
     description { "MyText" }
-    organizer { nil }
+    organizer factory: :user
     venue { nil }
     date { "2024-09-28 12:22:59" }
-    price { "MyString" }
+    price { 11111 }
   end
 end

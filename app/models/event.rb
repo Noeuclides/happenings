@@ -34,7 +34,7 @@ class Event < ApplicationRecord
 
   monetize :price_cents
 
-  enum status: { draft: 0, published: 1, cancelled: 2 }
+  enum status: { draft: 0, published: 1, cancelled: 2 }, _default: :draft
   enum mode: { on_site: 0, online: 1, both: 2 }, _default: :on_site
 
   has_one_attached :image

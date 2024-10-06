@@ -86,13 +86,14 @@ class EventsController < ApplicationController
   end
 
   private
-    def set_event
-      @event = Event.find(params[:id])
 
-      authorize! @event
-    end
+  def set_event
+    @event = Event.find(params[:id])
 
-    def event_params
-      params.require(:event).permit(:name, :description, :organizer_id, :venue_id, :date, :price)
-    end
+    authorize! @event
+  end
+
+  def event_params
+    params.require(:event).permit(:name, :description, :organizer_id, :venue_id, :date, :price)
+  end
 end

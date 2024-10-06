@@ -5,7 +5,7 @@ module JwtHelper
         sub: user.id,
         jti: user.jti,
         scp: 'user',
-        aud: 'your_audience_value',
+        aud: 'happenings',
         exp: 24.hours.from_now.to_i
       },
       Rails.application.credentials.devise_jwt_secret_key!

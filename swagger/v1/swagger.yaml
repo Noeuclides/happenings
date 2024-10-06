@@ -4,6 +4,196 @@ info:
   title: API V1
   version: v1
 paths:
+  "/api/v1/events":
+    get:
+      summary: Lists all events
+      tags:
+      - Events
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: events found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    date:
+                      type: string
+                      format: datetime
+                    price_cents:
+                      type: integer
+                    price_currency:
+                      type: string
+                    organizer_id:
+                      type: integer
+                    venue_id:
+                      type: integer
+                      nullable: true
+                    status:
+                      type: string
+                      enum:
+                      - draft
+                      - published
+                      - cancelled
+                    mode:
+                      type: string
+                      enum:
+                      - on_site
+                      - online
+                      - both
+    post:
+      summary: Creates an event
+      tags:
+      - Events
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '201':
+          description: event created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                date:
+                  type: string
+                  format: datetime
+                price:
+                  type: number
+                organizer_id:
+                  type: integer
+                venue_id:
+                  type: integer
+                  nullable: true
+              required:
+              - name
+              - description
+              - date
+              - price
+              - organizer_id
+  "/api/v1/events/{id}":
+    get:
+      summary: Retrieves an event
+      tags:
+      - Events
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: event found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  date:
+                    type: string
+                    format: datetime
+                  price_cents:
+                    type: integer
+                  price_currency:
+                    type: string
+                  organizer_id:
+                    type: integer
+                  venue_id:
+                    type: integer
+                    nullable: true
+                  status:
+                    type: string
+                    enum:
+                    - draft
+                    - published
+                    - cancelled
+                  mode:
+                    type: string
+                    enum:
+                    - on_site
+                    - online
+                    - both
+        '404':
+          description: event not found
+    put:
+      summary: Updates an event
+      tags:
+      - Events
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: event updated
+        '404':
+          description: event not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                date:
+                  type: string
+                  format: datetime
+                price:
+                  type: number
+                venue_id:
+                  type: integer
+                  nullable: true
+    delete:
+      summary: Deletes an event
+      tags:
+      - Events
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: event deleted
+        '404':
+          description: event not found
   "/api/v1/signup":
     post:
       summary: Creates a user

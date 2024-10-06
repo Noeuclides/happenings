@@ -39,6 +39,7 @@ FactoryBot.define do
     email { Faker::Internet.email }
     password { 'password123' }
     password_confirmation { 'password123' }
+    confirmed_at { Time.current }
 
     trait :pending do
       confirmation_token { 'some-confirmation-token' }
