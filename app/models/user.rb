@@ -48,6 +48,7 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, presence: true
   after_create :assign_default_role
+  class_attribute :api_request, default: false
 
   def assign_default_role
     self.add_role(:assistant) if self.roles.blank?
@@ -57,6 +58,11 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def send_confirmation_instructions
+    unless self.class.api_request
+      super
+    end
+  end
   # def admin?
   #   has_role? :admin
   # end
